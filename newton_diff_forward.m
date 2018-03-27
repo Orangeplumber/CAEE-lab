@@ -32,15 +32,15 @@ for i=nearest_data-n1:n2+nearest_data
     Y(1,j)=Data(i,2);
     j=j+1;
 end
-
+p=(x-X(1,1))/(X(1,2)-X(1,1));
 B=zeros(degree,degree);
 for i=1:degree
-    B(1,i)=(Y(1,i+1)-Y(1,i))/(X(1,i+1)-X(1,i));
+    B(1,i)=Y(1,i+1)-Y(1,i);
 end
 % calculating coefficients
 for i=2:degree
     for j=1:degree+1-i
-        B(i,j)=(B(i-1,j+1)-B(i-1,j))/(X(1,j+i)-X(1,j));
+        B(i,j)=B(i-1,j+1)-B(i-1,j);
     end
 end
 sum=0;
@@ -51,8 +51,7 @@ for i=1:degree+1
         coeff=B(i-1,1);
     end
     for j=i-1:-1:1
-        coeff=coeff*(x-X(1,j));
+        coeff=coeff*((p-j+1)/j);
     end
     sum=sum+coeff;
 end
-sum

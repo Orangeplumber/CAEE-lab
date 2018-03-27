@@ -36,12 +36,12 @@ end
 % Y=[1 2 3];
 % Langragian method
 sum=0;
+prod=ones(1,degree+1);
 for i=1:degree+1
-    prod=1;
     for j=1:degree+1
         if i~=j
-            prod=prod*(x-X(1,j))/(X(1,i)-X(1,j));
+            prod(1,i)=prod(1,i)*(x-X(1,j))/(X(1,i)-X(1,j));
         end
     end
-    sum=sum+(prod*Y(i));
+    sum=sum+(prod(1,i)*Y(i));
 end
