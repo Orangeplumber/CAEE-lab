@@ -1,22 +1,26 @@
 clear all;
 clc
-Data=input('Enter Data:');
-shape=size(Data);
-data_points=shape(1);
+% clearing workspace
+Data=input('Enter Data:'); % input data from user(complete input output set of the system) e.g: [2 3; 4 5; 7 8; 16 1]
+shape=size(Data); % e.g: (rows,cols)
+data_points=shape(1); % rows
 x=input('Enter Prediction point:');
 degree=input('Enter degree of Polynomial:');
-nearest_data=1;
+% nearest_data is the data point with minimum diff. in x-values
+nearest_data=1; % initial assumption
 for i=1:data_points
     if abs(Data(i,1)-x)<abs(Data(nearest_data,1)-x)
         nearest_data=i;
     end
 end
-n1=0;
-n2=degree;
-diff=abs(Data(data_points,1)-Data(1,1));
+% n1---> number of points before nearest_data
+% n2---> number of points after nearest_data
+n1=0; % initial guess
+n2=degree; % n1+n2=degree
+diff=abs(Data(data_points,1)-Data(1,1)); % max guess possible
 for i=0:degree
     j=abs(degree-i);
-    if j+nearest_data<data_points+1 && i<nearest_data
+    if j+nearest_data<data_points+1 && i<nearest_data % condition for end points
         if (Data(nearest_data+j,1)-Data(nearest_data-i,1))<=diff
             diff=Data(nearest_data+j,1)-Data(nearest_data-i,1);
             n1=i;
