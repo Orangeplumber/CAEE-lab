@@ -28,8 +28,8 @@ for i=0:degree
         end
     end
 end
-X=zeros(1,degree+1);
-Y=zeros(1,degree+1);
+X=zeros(1,degree+1); % set of x values which will be used in calculation
+Y=zeros(1,degree+1); % set of y values which will be used in calculation 
 j=1;
 for i=nearest_data-n1:n2+nearest_data
     X(1,j)=Data(i,1);
@@ -39,13 +39,23 @@ end
 % X=[1 2 3];
 % Y=[1 2 3];
 % Langragian method
-sum=0;
-prod=ones(1,degree+1);
+y_tar=0; % y_target is nothing but the y value corresponding target x value.
+lang=ones(1,degree+1); % declaring the langragian array with all values one.
 for i=1:degree+1
     for j=1:degree+1
         if i~=j
-            prod(1,i)=prod(1,i)*(x-X(1,j))/(X(1,i)-X(1,j));
+            lang(1,i)=lang(1,i)*(x-X(1,j))/(X(1,i)-X(1,j));
         end
     end
-    sum=sum+(prod(1,i)*Y(i));
+    y_tar=y_tar+(lang(1,i)*Y(i));
 end
+disp('The value of y corresponding to target value of x is:');
+y_tar
+
+% example<-----
+% Enter Data:[2 3; 4 5; 7 8; 16 1]
+% Enter Prediction point:2.5
+% Enter degree of Polynomial:2
+% The value of y corresponding to target value of x is:
+% y_tar = 3.5000
+% ------>
