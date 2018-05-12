@@ -44,7 +44,7 @@ for i=2:degree
     end
 end
 sum=0;
-for i=1:degree+1
+for i=1:degree+1new
     if i==1
         coeff=Y(1,1);
     else
