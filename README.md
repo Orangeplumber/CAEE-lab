@@ -15,5 +15,5 @@
   * Regression
 
 ## Code
-* Code is in MATLAB
-* Comments are yet to be added
+* Code is in MATLAB.
+* Comments are yet to be added.
